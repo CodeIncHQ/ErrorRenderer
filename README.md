@@ -2,7 +2,7 @@
 
 ## Usage
 
-Also take a look to [this example file](https://github.com/codeinchq/lib-exceptiondisplay/blob/master/example.php).
+Also take a look to [this example file](https://github.com/codeinchq/lib-exceptiondisplay/blob/master/examples/example.php).
 
 ```php
 use CodeInc\ExceptionDisplay\ExceptionRederingEngine;
@@ -15,3 +15,10 @@ $exception2 = new Exception("A big error", 0, $exception1);
 (new ExceptionRederingEngine($exception2, true))->render();
 ```
 
+## Screenshots
+
+### Terminal
+<img src="https://github.com/codeinchq/lib-exceptiondisplay/blob/master/examples/terminal.png?raw=true" alt="">
+
+### Browser
+<img src="https://github.com/codeinchq/lib-exceptiondisplay/blob/master/examples/browser.png?raw=true" alt="">
