@@ -16,7 +16,7 @@ $exception = new Exception("A big error", 0,
 ## Screenshots
 
 ### Terminal
-<img src="https://github.com/codeinchq/lib-exceptiondisplay/blob/master/examples/terminal.png?raw=true" alt="">
+<img src="https://github.com/codeinchq/lib-errordisplay/blob/master/screenshots/terminal.png?raw=true" alt="">
 
 ### Browser
-<img src="https://github.com/codeinchq/lib-exceptiondisplay/blob/master/examples/browser.png?raw=true" alt="">
+<img src="https://github.com/codeinchq/lib-errordisplay/blob/master/screenshots/browser.png?raw=true" alt="">
