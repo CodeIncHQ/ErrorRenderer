@@ -1,7 +1,7 @@
 <?php
 //
 // +---------------------------------------------------------------------+
-// | CODE INC. SOURCE CODE - CONFIDENTIAL                                |
+// | CODE INC. SOURCE CODE                                               |
 // +---------------------------------------------------------------------+
 // | Copyright (c) 2017 - Code Inc. SAS - All Rights Reserved.           |
 // | Visit https://www.codeinc.fr for more information about licensing.  |
@@ -16,19 +16,52 @@
 //
 // Author:   Joan Fabrégat <joan@codeinc.fr>
 // Date:     15/12/2017
-// Time:     13:12
+// Time:     11:48
 // Project:  lib-errordisplay
 //
 namespace CodeInc\ErrorDisplay\RenderingEngines;
-use CodeInc\ErrorDisplay\ErrorDisplayException;
+use Throwable;
 
 
 /**
- * Class RenderingEngineException
+ * Interface RenderingEngineInterface
  *
  * @package CodeInc\ErrorDisplay\RenderingEngines
  * @author Joan Fabrégat <joan@codeinc.fr>
  */
-class RenderingEngineException extends ErrorDisplayException {
+interface RenderingEngineInterface {
+	/**
+	 * Renders the exception.
+	 */
+	public function render();
 
+	/**
+	 * Returns the exception to be rendered.
+	 *
+	 * @return Throwable
+	 */
+	public function getException();
+
+	/**
+	 * Verifies if the verbose mode is enabled.
+	 *
+	 * @return bool
+	 */
+	public function isVerboseModeEnabled():bool;
+
+
+	/**
+	 * Returns the view's HTML source code
+	 *
+	 * @return string
+	 */
+	public function get():string;
+
+	/**
+	 * Alias of get()
+	 *
+	 * @see ErrorBrowserRenderingEngine::get()
+	 * @return string
+	 */
+	public function __toString():string;
 }
