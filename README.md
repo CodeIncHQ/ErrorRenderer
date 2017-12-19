@@ -2,8 +2,6 @@
 
 ## Usage
 
-Also take a look to [this example file](https://github.com/codeinchq/lib-exceptiondisplay/blob/master/examples/example.php).
-
 ```php
 use CodeInc\ExceptionDisplay\ExceptionRederingEngine;
 
