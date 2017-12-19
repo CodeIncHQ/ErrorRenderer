@@ -20,6 +20,7 @@
 // Project:  lib-exceptiondisplay
 //
 namespace CodeInc\ExceptionDisplay\RenderingEngines;
+use Throwable;
 
 
 /**
@@ -30,7 +31,7 @@ namespace CodeInc\ExceptionDisplay\RenderingEngines;
  */
 abstract class AbstractRenderingEngine implements RenderingEngineInterface {
 	/**
-	 * @var \Exception
+	 * @var Throwable
 	 */
 	private $exception;
 
@@ -42,29 +43,29 @@ abstract class AbstractRenderingEngine implements RenderingEngineInterface {
 	/**
 	 * CLIExceptionDisplay constructor.
 	 *
-	 * @param \Exception $exception
+	 * @param Throwable $exception
 	 * @param bool $verboseMode
 	 */
-	public function __construct(\Exception $exception, bool $verboseMode = null) {
-		$this->exception = $exception;
-		$this->verboseMode = $verboseMode ?? false;
+	public function __construct(Throwable $exception, bool $verboseMode = null) {
+		$this->setException($exception);
+		$this->setVerboseMode($verboseMode);
 	}
 
 	/**
 	 * Sets the parent exception.
 	 *
-	 * @param \Exception $exception
+	 * @param Throwable $exception
 	 */
-	protected function setException(\Exception $exception) {
+	protected function setException(Throwable $exception) {
 		$this->exception = $exception;
 	}
 
 	/**
 	 * Returns the exception to be rendered.
 	 *
-	 * @return \Exception
+	 * @return Throwable
 	 */
-	public function getException():\Exception {
+	public function getException() {
 		return $this->exception;
 	}
 

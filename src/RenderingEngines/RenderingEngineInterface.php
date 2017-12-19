@@ -20,6 +20,7 @@
 // Project:  lib-exceptiondisplay
 //
 namespace CodeInc\ExceptionDisplay\RenderingEngines;
+use Throwable;
 
 
 /**
@@ -37,9 +38,9 @@ interface RenderingEngineInterface {
 	/**
 	 * Returns the exception to be rendered.
 	 *
-	 * @return \Exception
+	 * @return Throwable
 	 */
-	public function getException():\Exception;
+	public function getException();
 
 	/**
 	 * Verifies if the verbose mode is enabled.

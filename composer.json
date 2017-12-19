@@ -1,6 +1,6 @@
 {
   "name": "codeinchq/lib-exceptiondisplay",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Code Inc.'s exception display library",
   "homepage": "https://github.com/codeinchq/lib-exceptiondisplay",
   "type": "library",

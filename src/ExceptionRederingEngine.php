@@ -24,6 +24,7 @@ use CodeInc\ExceptionDisplay\RenderingEngines\AbstractRenderingEngine;
 use CodeInc\ExceptionDisplay\RenderingEngines\BrowserRenderingEngine;
 use CodeInc\ExceptionDisplay\RenderingEngines\TerminalRenderingEngine;
 use CodeInc\ExceptionDisplay\RenderingEngines\RenderingEngineInterface;
+use Throwable;
 
 
 /**
@@ -41,10 +42,10 @@ class ExceptionRederingEngine extends AbstractRenderingEngine {
 	/**
 	 * ExceptionRederingEngine constructor.
 	 *
-	 * @param \Exception $exception
+	 * @param Throwable $exception
 	 * @param bool|null $verboseMode
 	 */
-	public function __construct(\Exception $exception, bool $verboseMode = null) {
+	public function __construct(Throwable $exception, bool $verboseMode = null) {
 		parent::__construct($exception, $verboseMode);
 
 		// Command line interface
