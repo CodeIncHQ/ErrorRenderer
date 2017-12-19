@@ -1,6 +1,6 @@
 {
   "name": "codeinchq/lib-exceptiondisplay",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Code Inc.'s exception display library",
   "homepage": "https://github.com/codeinchq/lib-exceptiondisplay",
   "type": "library",
@@ -11,7 +11,7 @@
   },
   "autoload": {
     "psr-4": {
-      "CodeInc\\ExceptionDisplay\\": "src"
+      "CodeInc\\ErrorDisplay\\": "src"
     }
   },
   "authors": [

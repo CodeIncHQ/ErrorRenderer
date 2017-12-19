@@ -19,16 +19,16 @@
 // Time:     18:54
 // Project:  lib-gui
 //
-namespace CodeInc\ExceptionDisplay\RenderingEngines;
+namespace CodeInc\ErrorDisplay\RenderingEngines;
 
 
 /**
- * Class BrowserRenderingEngine
+ * Class ErrorBrowserRenderingEngine
  *
- * @package CodeInc\ExceptionDisplay\RenderingEngines
+ * @package CodeInc\ErrorDisplay\RenderingEngines
  * @author Joan Fabrégat <joan@codeinc.fr>
  */
-class BrowserRenderingEngine extends AbstractRenderingEngine {
+class ErrorBrowserRenderingEngine extends AbstractRenderingEngine {
 	/**
 	 * Renders the HTML code.
 	 */

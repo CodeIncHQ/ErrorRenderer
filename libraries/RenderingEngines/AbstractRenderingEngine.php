@@ -16,52 +16,100 @@
 //
 // Author:   Joan Fabrégat <joan@codeinc.fr>
 // Date:     15/12/2017
-// Time:     11:48
-// Project:  lib-exceptiondisplay
+// Time:     13:07
+// Project:  lib-errordisplay
 //
-namespace CodeInc\ExceptionDisplay\RenderingEngines;
+namespace CodeInc\ErrorDisplay\RenderingEngines;
 use Throwable;
 
 
 /**
- * Interface RenderingEngineInterface
+ * Class AbstractRenderingEngine
  *
- * @package CodeInc\ExceptionDisplay\RenderingEngines
+ * @package CodeInc\ErrorDisplay\RenderingEngines
  * @author Joan Fabrégat <joan@codeinc.fr>
  */
-interface RenderingEngineInterface {
+abstract class AbstractRenderingEngine implements RenderingEngineInterface {
 	/**
-	 * Renders the exception.
+	 * @var Throwable
 	 */
-	public function render();
+	private $exception;
+
+	/**
+	 * @var bool
+	 */
+	private $verboseMode;
+
+	/**
+	 * CLIExceptionDisplay constructor.
+	 *
+	 * @param Throwable $exception
+	 * @param bool $verboseMode
+	 */
+	public function __construct(Throwable $exception, bool $verboseMode = null) {
+		$this->setException($exception);
+		$this->setVerboseMode($verboseMode);
+	}
+
+	/**
+	 * Sets the parent exception.
+	 *
+	 * @param Throwable $exception
+	 */
+	protected function setException(Throwable $exception) {
+		$this->exception = $exception;
+	}
 
 	/**
 	 * Returns the exception to be rendered.
 	 *
 	 * @return Throwable
 	 */
-	public function getException();
+	public function getException() {
+		return $this->exception;
+	}
 
 	/**
 	 * Verifies if the verbose mode is enabled.
 	 *
 	 * @return bool
 	 */
-	public function isVerboseModeEnabled():bool;
+	public function isVerboseModeEnabled():bool {
+		return $this->verboseMode;
+	}
 
+	/**
+	 * Sets the verbose mode.
+	 *
+	 * @param bool $verboseMode
+	 */
+	protected function setVerboseMode(bool $verboseMode) {
+		$this->verboseMode = $verboseMode;
+	}
 
 	/**
 	 * Returns the view's HTML source code
 	 *
 	 * @return string
 	 */
-	public function get():string;
+	public function get():string {
+		ob_start();
+		$this->render();
+		return ob_get_clean();
+	}
 
 	/**
 	 * Alias of get()
 	 *
-	 * @see BrowserRenderingEngine::get()
+	 * @see AbstractRenderingEngine::get()
 	 * @return string
 	 */
-	public function __toString():string;
+	public function __toString():string {
+		try {
+			return $this->get();
+		}
+		catch (\Exception $exception) {
+			return "Error: ".$exception->getMessage();
+		}
+	}
 }

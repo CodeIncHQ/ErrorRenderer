@@ -20,11 +20,11 @@
 // Project:  lib-exceptiondisplay
 //
 require_once __DIR__.'/vendor/autoload.php';
-use CodeInc\ExceptionDisplay\ExceptionRederingEngine;
+use CodeInc\ErrorDisplay\ErrorRederingEngine;
 
 // Creating fake exception
 $exception1 = new Exception("A Previous exception");
 $exception2 = new Exception("A big error", 0, $exception1);
 
 // Rendering
-(new ExceptionRederingEngine($exception2, true))->render();
+(new ErrorRederingEngine($exception2, true))->render();

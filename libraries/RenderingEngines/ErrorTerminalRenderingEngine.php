@@ -17,19 +17,19 @@
 // Author:   Joan Fabrégat <joan@codeinc.fr>
 // Date:     15/12/2017
 // Time:     11:44
-// Project:  lib-exceptiondisplay
+// Project:  lib-errordisplay
 //
-namespace CodeInc\ExceptionDisplay\RenderingEngines;
+namespace CodeInc\ErrorDisplay\RenderingEngines;
 use Colors\Color;
 
 
 /**
- * Class TerminalRenderingEngine
+ * Class ErrorTerminalRenderingEngine
  *
- * @package CodeInc\ExceptionDisplay\RenderingEngines
+ * @package CodeInc\ErrorDisplay\RenderingEngines
  * @author Joan Fabrégat <joan@codeinc.fr>
  */
-class TerminalRenderingEngine extends AbstractRenderingEngine {
+class ErrorTerminalRenderingEngine extends AbstractRenderingEngine {
 	const DEFAULT_LINE_LENGTH = 80;
 	const DEFAULT_CONTENT_SIDE_PADDING = 2;
 

@@ -17,17 +17,17 @@
 // Author:   Joan Fabrégat <joan@codeinc.fr>
 // Date:     15/12/2017
 // Time:     11:43
-// Project:  lib-exceptiondisplay
+// Project:  lib-errordisplay
 //
-namespace CodeInc\ExceptionDisplay;
+namespace CodeInc\ErrorDisplay;
 
 
 /**
- * Class ExceptionDisplayException
+ * Class ErrorDisplayException
  *
- * @package CodeInc\ExceptionDisplay
+ * @package CodeInc\ErrorDisplay
  * @author Joan Fabrégat <joan@codeinc.fr>
  */
-class ExceptionDisplayException extends \Exception {
+class ErrorDisplayException extends \Exception {
 
 }

@@ -16,53 +16,52 @@
 //
 // Author:   Joan Fabrégat <joan@codeinc.fr>
 // Date:     15/12/2017
-// Time:     13:03
-// Project:  lib-exceptiondisplay
+// Time:     11:48
+// Project:  lib-errordisplay
 //
-namespace CodeInc\ExceptionDisplay;
-use CodeInc\ExceptionDisplay\RenderingEngines\AbstractRenderingEngine;
-use CodeInc\ExceptionDisplay\RenderingEngines\BrowserRenderingEngine;
-use CodeInc\ExceptionDisplay\RenderingEngines\TerminalRenderingEngine;
-use CodeInc\ExceptionDisplay\RenderingEngines\RenderingEngineInterface;
+namespace CodeInc\ErrorDisplay\RenderingEngines;
 use Throwable;
 
 
 /**
- * Class RenderException
+ * Interface RenderingEngineInterface
  *
- * @package CodeInc\ExceptionDisplay
+ * @package CodeInc\ErrorDisplay\RenderingEngines
  * @author Joan Fabrégat <joan@codeinc.fr>
  */
-class ExceptionRederingEngine extends AbstractRenderingEngine {
-	/**
-	 * @var RenderingEngineInterface
-	 */
-	private $renderingEngine;
-
-	/**
-	 * ExceptionRederingEngine constructor.
-	 *
-	 * @param Throwable $exception
-	 * @param bool|null $verboseMode
-	 */
-	public function __construct(Throwable $exception, bool $verboseMode = null) {
-		parent::__construct($exception, $verboseMode);
-
-		// Command line interface
-		if (php_sapi_name() == "cli") {
-			$this->renderingEngine = new TerminalRenderingEngine($exception, $verboseMode);
-		}
-
-		// Web browser
-		else {
-			$this->renderingEngine = new BrowserRenderingEngine($exception, $verboseMode);
-		}
-	}
-
+interface RenderingEngineInterface {
 	/**
 	 * Renders the exception.
 	 */
-	public function render() {
-		$this->renderingEngine->render();
-	}
+	public function render();
+
+	/**
+	 * Returns the exception to be rendered.
+	 *
+	 * @return Throwable
+	 */
+	public function getException();
+
+	/**
+	 * Verifies if the verbose mode is enabled.
+	 *
+	 * @return bool
+	 */
+	public function isVerboseModeEnabled():bool;
+
+
+	/**
+	 * Returns the view's HTML source code
+	 *
+	 * @return string
+	 */
+	public function get():string;
+
+	/**
+	 * Alias of get()
+	 *
+	 * @see ErrorBrowserRenderingEngine::get()
+	 * @return string
+	 */
+	public function __toString():string;
 }

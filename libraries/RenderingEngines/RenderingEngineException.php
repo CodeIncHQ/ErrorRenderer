@@ -17,18 +17,18 @@
 // Author:   Joan Fabrégat <joan@codeinc.fr>
 // Date:     15/12/2017
 // Time:     13:12
-// Project:  lib-exceptiondisplay
+// Project:  lib-errordisplay
 //
-namespace CodeInc\ExceptionDisplay\RenderingEngines;
-use CodeInc\ExceptionDisplay\ExceptionDisplayException;
+namespace CodeInc\ErrorDisplay\RenderingEngines;
+use CodeInc\ErrorDisplay\ErrorDisplayException;
 
 
 /**
  * Class RenderingEngineException
  *
- * @package CodeInc\ExceptionDisplay\RenderingEngines
+ * @package CodeInc\ErrorDisplay\RenderingEngines
  * @author Joan Fabrégat <joan@codeinc.fr>
  */
-class RenderingEngineException extends ExceptionDisplayException {
+class RenderingEngineException extends ErrorDisplayException {
 
 }
