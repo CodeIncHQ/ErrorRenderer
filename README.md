@@ -1,4 +1,4 @@
-# Code Inc. library to render exception in HTML and CLI
+# Code Inc. library to render errors in HTML and CLI
 
 ## Usage
 
@@ -7,12 +7,12 @@ Also take a look to [this example file](https://github.com/codeinchq/lib-excepti
 ```php
 use CodeInc\ExceptionDisplay\ExceptionRederingEngine;
 
-// Creating fake exception
-$exception1 = new Exception("A Previous exception");
-$exception2 = new Exception("A big error", 0, $exception1);
+// Creating fake exceptions
+$exception = new Exception("A big error", 0, 
+  new Exception("A Previous exception"));
 
 // Rendering
-(new ExceptionRederingEngine($exception2, true))->render();
+(new ExceptionRederingEngine($exception, true))->render();
 ```
 
 ## Screenshots
