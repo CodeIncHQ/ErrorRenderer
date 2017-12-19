@@ -48,7 +48,7 @@ abstract class AbstractRenderingEngine implements RenderingEngineInterface {
 	 */
 	public function __construct(Throwable $exception, bool $verboseMode = null) {
 		$this->setException($exception);
-		$this->setVerboseMode($verboseMode);
+		$this->setVerboseMode($verboseMode ?? true);
 	}
 
 	/**
