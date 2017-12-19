@@ -96,11 +96,11 @@ class ErrorTerminalRenderingEngine extends AbstractRenderingEngine {
 	}
 
 	/**
-	 * @param \Exception $exception
+	 * @param \Throwable $exception
 	 * @param int|null $leftPadding
 	 * @param int|null $rightPadding
 	 */
-	private function renderException(\Exception $exception, int $leftPadding = null, int $rightPadding = null) {
+	private function renderException(\Throwable $exception, int $leftPadding = null, int $rightPadding = null) {
 		// Renders the message
 		echo $this->termColor($this->getPaddedContent(get_class($exception), $leftPadding, $rightPadding))
 				->white->bold->bg_red."\n";

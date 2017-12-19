@@ -79,9 +79,9 @@ class ErrorBrowserRenderingEngine extends AbstractRenderingEngine {
 	/**
 	 * Renders and exception.
 	 *
-	 * @param \Exception $exception
+	 * @param \Throwable $exception
 	 */
-	private function renderException(\Exception $exception) {
+	private function renderException(\Throwable $exception) {
 		?>
 		<div class="exception" data-type="<?=htmlspecialchars(get_class($exception))?>">
 			<div class="exception-class"><?=htmlspecialchars(get_class($exception))?></div>
