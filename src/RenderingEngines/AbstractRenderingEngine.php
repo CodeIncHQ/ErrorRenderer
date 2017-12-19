@@ -108,7 +108,7 @@ abstract class AbstractRenderingEngine implements RenderingEngineInterface {
 		try {
 			return $this->get();
 		}
-		catch (\Exception $exception) {
+		catch (\Throwable $exception) {
 			return "Error: ".$exception->getMessage();
 		}
 	}
