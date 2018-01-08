@@ -82,13 +82,58 @@ class ErrorBrowserRenderingEngine extends AbstractRenderingEngine {
 	 * @param \Throwable $exception
 	 */
 	private function renderException(\Throwable $exception) {
+		$exceptionClass = get_class($exception);
 		?>
-		<div class="exception" data-type="<?=htmlspecialchars(get_class($exception))?>">
-			<div class="exception-class"><?=htmlspecialchars(get_class($exception))?></div>
-			<div class="exception-message"><?=htmlspecialchars($exception->getMessage())?></div>
-			<div class="exception-location"><?=htmlspecialchars($exception->getFile()).':'.$exception->getLine()?></div>
-			<div class="exception-trace"><?=nl2br(htmlspecialchars($exception->getTraceAsString()))?></div>
+		<div class="exception" data-type="<?=htmlspecialchars($exceptionClass)?>">
+			<span class="exception-class">[<?=htmlspecialchars($exceptionClass)?>]</span>
+			<span class="exception-message">
+				<?=htmlspecialchars($exception->getMessage())?>
+			</span><br>
+			<span class="exception-location">
+				<?=htmlspecialchars($exception->getFile()).':'.$exception->getLine()?>
+			</span>
+			<? $this->renderExceptionTrace($exception) ?>
 		</div>
+		<?
+	}
+
+	/**
+	 * Renders the Exception backtrace
+	 *
+	 * @param Throwable $exception
+	 */
+	private function renderExceptionTrace(\Throwable $exception) {
+		?>
+		<ol class="exception-trace">
+			<? foreach ($exception->getTrace() as $item) {
+				echo "<li>";
+				if (isset($item["function"]) && $item["function"]) {
+					echo "<span class='exception-trace-function'>\n";
+					if (isset($item["class"], $item["type"]) && $item["class"] && $item["type"]) {
+						echo htmlspecialchars($item["class"].$item["type"]);
+					}
+					echo htmlspecialchars($item["function"]);
+					echo "(";
+					if (isset($item["args"]) && is_array($item["args"]) && !empty($item["args"])) {
+						$i = 0;
+						echo "<br>";
+						foreach ($item["args"] as $arg) {
+							echo "<span class='exception-trace-arg'>";
+							if (is_string($arg)) echo "\"";
+							echo htmlspecialchars($arg);
+							if (is_string($arg)) echo "\"";
+							if (++$i < count($item["args"])) echo ", ";
+							echo "</span><br>";
+						}
+					}
+					echo ")</span><br>";
+				}
+				echo "<span class='exception-location'>"
+					.htmlspecialchars($item["file"].":".$item["line"])
+					."</span>\n"
+					."</li>\n";
+			} ?>
+		</ol>
 		<?
 	}
 
@@ -133,16 +178,28 @@ class ErrorBrowserRenderingEngine extends AbstractRenderingEngine {
 			div.exception-report div.exception-previous div.exception {
 				margin-bottom: 30px;
 			}
-			div.exception-report div.exception-class {
+			div.exception-report div.exception > span.exception-class {
+				white-space: nowrap;
 				font-weight: bold;
 			}
-			div.exception-report div.exception-location, div.exception-reportdiv.exception-trace {
-				font-size: .8em;
-				font-style: italic;
-				margin-top: 5px;
+			div.exception-report div.exception > span.exception-location {
+				display: inline-block;
+				margin-top: 3px;
 			}
-			div.exception-report div.exception-location {
+			div.exception-report .exception-location {
+				font-size: .7em;
+				opacity: .7;
+				/*font-style: italic;*/
+			}
+			div.exception-report div.exception > ol.exception-trace {
 				margin-top: 20px;
+			}
+			div.exception-report div.exception > ol.exception-trace li:not(:last-of-type) {
+				margin-bottom: 10px;
+			}
+			div.exception-report div.exception > ol.exception-trace li span.exception-trace-arg {
+				display: inline-block;
+				margin: 2px 0 2px 20px;
 			}
 		</style>
 		<?
