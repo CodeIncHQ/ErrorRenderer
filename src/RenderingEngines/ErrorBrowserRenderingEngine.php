@@ -100,7 +100,7 @@ class ErrorBrowserRenderingEngine extends AbstractRenderingEngine {
 	/**
 	 * Renders the Exception backtrace
 	 *
-	 * @param Throwable $exception
+	 * @param \Throwable $exception
 	 */
 	private function renderExceptionTrace(\Throwable $exception) {
 		?>
@@ -120,7 +120,7 @@ class ErrorBrowserRenderingEngine extends AbstractRenderingEngine {
 						foreach ($item["args"] as $arg) {
 							echo "<span class='exception-trace-arg'>";
 							if (is_string($arg)) echo "\"";
-							echo htmlspecialchars($arg);
+							echo htmlspecialchars((string)$arg);
 							if (is_string($arg)) echo "\"";
 							if (++$i < count($item["args"])) echo ", ";
 							echo "</span><br>";
