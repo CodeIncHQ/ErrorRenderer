@@ -118,10 +118,18 @@ class ErrorBrowserRenderingEngine extends AbstractRenderingEngine {
 						$i = 0;
 						echo "<br>";
 						foreach ($item["args"] as $arg) {
-							echo "<span class='exception-trace-arg'>";
-							if (is_string($arg)) echo "\"";
-							echo htmlspecialchars((string)$arg);
-							if (is_string($arg)) echo "\"";
+							if (!is_string($arg)) {
+								if (is_object($arg) && method_exists($arg, '__toString')) {
+									$arg = "\"".htmlspecialchars($arg->__toString())."\"";
+								}
+								else {
+									$arg = "<i>".gettype($arg)."</i>";
+								}
+							}
+							else {
+								$arg = "\"".htmlspecialchars($arg)."\"";
+							}
+							echo "<span class='exception-trace-arg'>$arg";
 							if (++$i < count($item["args"])) echo ", ";
 							echo "</span><br>";
 						}
