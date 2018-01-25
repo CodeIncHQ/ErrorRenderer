@@ -28,12 +28,12 @@ use Throwable;
 
 
 /**
- * Class ErrorRederingEngine
+ * Class ErrorRenderingEngine
  *
  * @package CodeInc\ErrorDisplay
  * @author Joan Fabrégat <joan@codeinc.fr>
  */
-class ErrorRederingEngine extends AbstractRenderingEngine {
+class ErrorRenderingEngine extends AbstractRenderingEngine {
 	/**
 	 * @var RenderingEngineInterface
 	 */
