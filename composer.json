@@ -1,6 +1,6 @@
 {
   "name": "codeinchq/lib-errordisplay",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "Code Inc.'s error display library",
   "homepage": "https://github.com/codeinchq/lib-errordisplay",
   "type": "library",

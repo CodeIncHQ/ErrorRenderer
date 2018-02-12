@@ -136,10 +136,13 @@ class ErrorBrowserRenderingEngine extends AbstractRenderingEngine {
 					}
 					echo ")</span><br>";
 				}
-				echo "<span class='exception-location'>"
-					.htmlspecialchars($item["file"].":".$item["line"])
-					."</span>\n"
-					."</li>\n";
+				if (isset($item['file'])) {
+					echo "<span class='exception-location'>"
+						.htmlspecialchars($item['file']);
+					if (isset($item['line'])) echo ":".$item['line'];
+					echo "</span>\n";
+				}
+				echo "</li>\n";
 			} ?>
 		</ol>
 		<?
