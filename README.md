@@ -3,14 +3,14 @@
 ## Usage
 
 ```php
-use CodeInc\ExceptionDisplay\ExceptionRederingEngine;
+use CodeInc\ExceptionDisplay\ExceptionRenderingEngine;
 
 // Creating fake exceptions
 $exception = new Exception("A big error", 0, 
   new Exception("A Previous exception"));
 
 // Rendering
-(new ExceptionRederingEngine($exception, true))->render();
+(new ExceptionRenderingEngine($exception, true))->render();
 ```
 
 ## Screenshots
