@@ -4,7 +4,6 @@ The PHP 7 library provides to classes dedicated to render exceptions and errors 
 
 ## Usage
 
-Rendering an exception:
 ```php
 <?php
 use CodeInc\ErrorDisplay\HtmlErrorRenderer;
