@@ -32,8 +32,8 @@ use Throwable;
  */
 class TermErrorRenderer extends AbstractErrorRenderer {
 	// Options
-	public const OPT_ALLOW_COLORS = 1024;
-	public const OPT_ALL = parent::OPT_ALL | self::OPT_ALLOW_COLORS;
+	public const OPT_COLORS = 1024;
+	public const OPT_ALL = parent::OPT_ALL | self::OPT_COLORS;
 	public const OPT_DEFAULT = self::OPT_ALL;
 
 	// Styles
@@ -214,7 +214,7 @@ class TermErrorRenderer extends AbstractErrorRenderer {
 		}
 
 		// applying colors
-		if ($this->options & self::OPT_ALLOW_COLORS && $this->termColor instanceof Color) {
+		if ($this->options & self::OPT_COLORS && $this->termColor instanceof Color) {
 			$paddedContent = $this->termColor->bg('red', $this->termColor->apply('white', $paddedContent));
 			if ($styles & self::STYLE_BOLD) {
 				$paddedContent = $this->termColor->apply('bold', $paddedContent);
