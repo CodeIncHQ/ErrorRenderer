@@ -1,16 +1,16 @@
 # Code Inc. library to render errors in HTML and CLI
 
-The PHP 7 library provides to classes dedicating to render exceptions and error (everythink which implements [`Throwable`](http://php.net/manual/fr/class.throwable.php)).
+The PHP 7 library provides to classes dedicated to render exceptions and errors (everything which implements [`Throwable`](http://php.net/manual/fr/class.throwable.php)).
 
 ## Usage
 
-Rendering an error:
+Rendering an exception:
 ```php
 <?php
 use CodeInc\ErrorDisplay\HtmlErrorRenderer;
 use CodeInc\ErrorDisplay\TermErrorRenderer;
 
-// Creating fake exceptions
+// Creating a fake exception
 $fakeException = new \Exception("A last exception", 1010, 
     new \Exception("A child exception", 0,
         new \Exception("A source exception")));
