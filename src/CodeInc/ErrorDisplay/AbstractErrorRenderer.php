@@ -16,53 +16,60 @@
 //
 // Author:   Joan Fabrégat <joan@codeinc.fr>
 // Date:     15/12/2017
-// Time:     13:03
+// Time:     13:07
 // Project:  lib-errordisplay
 //
 namespace CodeInc\ErrorDisplay;
-use CodeInc\ErrorDisplay\RenderingEngines\AbstractRenderingEngine;
-use CodeInc\ErrorDisplay\RenderingEngines\ErrorBrowserRenderingEngine;
-use CodeInc\ErrorDisplay\RenderingEngines\ErrorTerminalRenderingEngine;
-use CodeInc\ErrorDisplay\RenderingEngines\RenderingEngineInterface;
 use Throwable;
 
 
 /**
- * Class ErrorRenderingEngine
+ * Class AbstractErrorRenderer
  *
  * @package CodeInc\ErrorDisplay
  * @author Joan Fabrégat <joan@codeinc.fr>
  */
-class ErrorRenderingEngine extends AbstractRenderingEngine {
-	/**
-	 * @var RenderingEngineInterface
-	 */
-	private $renderingEngine;
+abstract class AbstractErrorRenderer implements ErrorRendererInterface {
+	// Options
+	public const OPT_RENDER_LOCATION = 1;
+	public const OPT_RENDER_BACKTRACE = 2;
+	public const OPT_RENDER_PREVIOUS_EXCEPTIONS = 4;
+	public const OPT_ALL = self::OPT_RENDER_LOCATION | self::OPT_RENDER_BACKTRACE | self::OPT_RENDER_PREVIOUS_EXCEPTIONS;
+	public const OPT_DEFAULT = self::OPT_ALL;
 
 	/**
-	 * ExceptionRederingEngine constructor.
+	 * @var Throwable
+	 */
+	protected $throwable;
+
+	/**
+	 * @var int
+	 */
+	protected $options = [];
+
+	/**
+	 * AbstractRenderingEngine constructor.
 	 *
-	 * @param Throwable $exception
-	 * @param bool|null $verboseMode
+	 * @param Throwable $throwable
+	 * @param int $options
 	 */
-	public function __construct(Throwable $exception, bool $verboseMode = null) {
-		parent::__construct($exception, $verboseMode);
-
-		// Command line interface
-		if (php_sapi_name() == "cli") {
-			$this->renderingEngine = new ErrorTerminalRenderingEngine($exception, $verboseMode);
-		}
-
-		// Web browser
-		else {
-			$this->renderingEngine = new ErrorBrowserRenderingEngine($exception, $verboseMode);
-		}
+	public function __construct(Throwable $throwable, int $options = null) {
+		$this->throwable = $throwable;
+		$this->options = $options !== null ? $options : self::OPT_DEFAULT;
 	}
 
 	/**
-	 * Renders the exception.
+	 * Alias of get()
+	 *
+	 * @see AbstractErrorRenderer::get()
+	 * @return string
 	 */
-	public function render() {
-		$this->renderingEngine->render();
+	public function __toString():string {
+		try {
+			return $this->get();
+		}
+		catch (\Throwable $exception) {
+			return "Rendering error: ".$exception->getMessage();
+		}
 	}
 }

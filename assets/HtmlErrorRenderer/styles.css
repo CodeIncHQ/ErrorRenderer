@@ -1,0 +1,79 @@
+/*
+ * +---------------------------------------------------------------------+
+ * | CODE INC. SOURCE CODE                                               |
+ * +---------------------------------------------------------------------+
+ * | Copyright (c) 2017 - Code Inc. SAS - All Rights Reserved.           |
+ * | Visit https://www.codeinc.fr for more information about licensing.  |
+ * +---------------------------------------------------------------------+
+ * | NOTICE:  All information contained herein is, and remains the       |
+ * | property of Code Inc. SAS. The intellectual and technical concepts  |
+ * | contained herein are proprietary to Code Inc. SAS are protected by  |
+ * | trade secret or copyright law. Dissemination of this information or |
+ * | reproduction of this material  is strictly forbidden unless prior   |
+ * | written permission is obtained from Code Inc. SAS.                  |
+ * +---------------------------------------------------------------------+
+ *
+ * Author:   Joan Fabrégat <joan@codeinc.fr>
+ * Date:     19/02/2018
+ * Time:     14:14
+ * Project:  lib-errordisplay
+ */
+
+div.exception-report {
+	font-family: "Courier New", monospace;
+	background: #97040C;
+	border-bottom-width: 5px;
+	margin: 15px;
+	padding: 15px;
+	color: #fff;
+	font-size: 14px;
+	list-style: decimal;
+	text-align: left;
+	max-width: 1000px;
+	min-width: 400px;
+}
+div.exception-report div.exception-title {
+	padding: 3px;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-align: center;
+	margin: 15px 0;
+}
+div.exception-report div.exception-title:first-of-type {
+	margin-top: 0;
+}
+div.exception-report div.exception-title:last-of-type {
+	margin-bottom: 0;
+}
+div.exception-report div.exception {
+	margin: 10px;
+}
+div.exception-report div.exception-previous {
+	margin: 40px 30px 0;
+}
+div.exception-report div.exception-previous div.exception {
+	margin-bottom: 30px;
+}
+div.exception-report div.exception > span.exception-class {
+	white-space: nowrap;
+	font-weight: bold;
+}
+div.exception-report div.exception > span.exception-location {
+	display: inline-block;
+	margin-top: 3px;
+}
+div.exception-report .exception-location {
+	font-size: .7em;
+	opacity: .7;
+	/*font-style: italic;*/
+}
+div.exception-report div.exception > ol.exception-trace {
+	margin-top: 20px;
+}
+div.exception-report div.exception > ol.exception-trace li:not(:last-of-type) {
+	margin-bottom: 10px;
+}
+div.exception-report div.exception > ol.exception-trace li span.exception-trace-arg {
+	display: inline-block;
+	margin: 2px 0 2px 20px;
+}

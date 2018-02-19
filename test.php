@@ -15,20 +15,28 @@
 // +---------------------------------------------------------------------+
 //
 // Author:   Joan Fabrégat <joan@codeinc.fr>
-// Date:     15/12/2017
-// Time:     13:12
+// Date:     19/02/2018
+// Time:     14:46
 // Project:  lib-errordisplay
 //
-namespace CodeInc\ErrorDisplay\RenderingEngines;
-use CodeInc\ErrorDisplay\ErrorDisplayException;
 
 
-/**
- * Class RenderingEngineException
- *
- * @package CodeInc\ErrorDisplay\RenderingEngines
- * @author Joan Fabrégat <joan@codeinc.fr>
- */
-class RenderingEngineException extends ErrorDisplayException {
 
+const OPT2 = 1;
+const OPT4 = 2;
+const OPT8 = 4;
+const OPT16 = 8;
+const OPT32 = 16;
+const OPTALL = 31;
+
+
+
+function testFlags(int $flags) {
+	echo "flags: $flags<br><br>";
+	foreach ([OPT2, OPT4, OPT8, OPT16, OPT32, OPTALL] as $flag) {
+		echo "$flag: ".(($flag & $flags) ? "ok" : "non")."<br>";
+	}
 }
+
+
+testFlags(OPT8 | OPT4);

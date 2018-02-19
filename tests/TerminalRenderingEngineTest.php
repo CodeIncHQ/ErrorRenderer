@@ -15,53 +15,35 @@
 // +---------------------------------------------------------------------+
 //
 // Author:   Joan Fabrégat <joan@codeinc.fr>
-// Date:     15/12/2017
-// Time:     11:48
+// Date:     19/02/2018
+// Time:     14:32
 // Project:  lib-errordisplay
 //
-namespace CodeInc\ErrorDisplay\RenderingEngines;
-use Throwable;
+namespace Tests\CodeInc\ErrorDisplay;
+use CodeInc\ErrorDisplay\TermErrorRenderer;
+use PHPUnit\Framework\TestCase;
 
 
 /**
- * Interface RenderingEngineInterface
+ * Class TerminalRenderingEngineTest
  *
- * @package CodeInc\ErrorDisplay\RenderingEngines
  * @author Joan Fabrégat <joan@codeinc.fr>
  */
-interface RenderingEngineInterface {
-	/**
-	 * Renders the exception.
-	 */
-	public function render();
+class TerminalRenderingEngineTest extends TestCase {
+	private function getException():\Exception {
+		$exception1 = new \Exception("A source exception");
+		$exception2 = new \Exception("A child exception", 0, $exception1);
+		return new \Exception("A last exception", 1010, $exception2);
+	}
 
-	/**
-	 * Returns the exception to be rendered.
-	 *
-	 * @return Throwable
-	 */
-	public function getException();
-
-	/**
-	 * Verifies if the verbose mode is enabled.
-	 *
-	 * @return bool
-	 */
-	public function isVerboseModeEnabled():bool;
-
-
-	/**
-	 * Returns the view's HTML source code
-	 *
-	 * @return string
-	 */
-	public function get():string;
-
-	/**
-	 * Alias of get()
-	 *
-	 * @see ErrorBrowserRenderingEngine::get()
-	 * @return string
-	 */
-	public function __toString():string;
+	public function testTerminalExceptionRendering():void {
+		try {
+			echo new TermErrorRenderer($this->getException(), TermErrorRenderer::OPT_ALL);
+			$this->assertTrue(true);
+		}
+		catch (\Throwable $exception) {
+			$this->throwException($exception);
+			$this->assertTrue(false);
+		}
+	}
 }

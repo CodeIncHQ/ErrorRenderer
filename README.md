@@ -3,20 +3,14 @@
 ## Usage
 
 ```php
-use CodeInc\ExceptionDisplay\ExceptionRenderingEngine;
+<?php
+use CodeInc\ErrorDisplay\ErrorRenderingEngine;
 
 // Creating fake exceptions
-$exception = new Exception("A big error", 0, 
-  new Exception("A Previous exception"));
+$exception1 = new \Exception("A source exception");
+		$exception2 = new \Exception("A child exception", 0, $exception1);
+		return new \Exception("A last exception", 1010, $exception2);
 
-// Rendering
-(new ExceptionRenderingEngine($exception, true))->render();
+// Rendering (using 
+echo new ErrorRenderingEngine($exception1);
 ```
-
-## Screenshots
-
-### Terminal
-<img src="https://github.com/codeinchq/lib-errordisplay/blob/master/screenshots/terminal.png?raw=true" alt="">
-
-### Browser
-<img src="https://github.com/codeinchq/lib-errordisplay/blob/master/screenshots/browser.png?raw=true" alt="">

@@ -16,18 +16,40 @@
 //
 // Author:   Joan Fabrégat <joan@codeinc.fr>
 // Date:     15/12/2017
-// Time:     11:43
+// Time:     11:48
 // Project:  lib-errordisplay
 //
 namespace CodeInc\ErrorDisplay;
+use Throwable;
 
 
 /**
- * Class ErrorDisplayException
+ * Interface ErrorRendererInterface
  *
  * @package CodeInc\ErrorDisplay
  * @author Joan Fabrégat <joan@codeinc.fr>
  */
-class ErrorDisplayException extends \Exception {
+interface ErrorRendererInterface {
+	/**
+	 * ExceptionRendererInterface constructor.
+	 *
+	 * @param Throwable $throwable
+	 * @param int|null $options
+	 */
+	public function __construct(\Throwable $throwable, ?int $options = null);
 
+	/**
+	 * Returns the code to be displayed.
+	 *
+	 * @return string
+	 */
+	public function get():string;
+
+	/**
+	 * Alias of get(). Returns the code to be displayed.
+	 *
+	 * @see ErrorRendererInterface::get()
+	 * @return string
+	 */
+	public function __toString():string;
 }
