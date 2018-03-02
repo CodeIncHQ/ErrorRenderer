@@ -20,7 +20,7 @@
 // Project:  lib-errordisplay
 //
 namespace Tests\CodeInc\ErrorDisplay;
-use CodeInc\ErrorDisplay\TermErrorRenderer;
+use CodeInc\ErrorDisplay\ConsoleErrorRenderer;
 use PHPUnit\Framework\TestCase;
 
 
@@ -38,7 +38,7 @@ class TerminalRenderingEngineTest extends TestCase {
 
 	public function testTerminalExceptionRendering():void {
 		try {
-			echo new TermErrorRenderer($this->getException(), TermErrorRenderer::OPT_ALL);
+			echo new ConsoleErrorRenderer($this->getException(), ConsoleErrorRenderer::OPT_ALL);
 			$this->assertTrue(true);
 		}
 		catch (\Throwable $exception) {

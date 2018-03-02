@@ -25,12 +25,12 @@ use Throwable;
 
 
 /**
- * Class TermErrorRenderer
+ * Class ConsoleErrorRenderer
  *
  * @package CodeInc\ErrorDisplay
  * @author Joan Fabrégat <joan@codeinc.fr>
  */
-class TermErrorRenderer extends AbstractErrorRenderer {
+class ConsoleErrorRenderer extends AbstractErrorRenderer {
 	// Options
 	public const OPT_COLORS = 1024;
 	public const OPT_ALL = parent::OPT_ALL | self::OPT_COLORS;
