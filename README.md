@@ -7,7 +7,7 @@ The PHP 7 library provides to classes dedicated to render exceptions and errors 
 ```php
 <?php
 use CodeInc\ErrorDisplay\HtmlErrorRenderer;
-use CodeInc\ErrorDisplay\TermErrorRenderer;
+use CodeInc\ErrorDisplay\ConsoleErrorRenderer;
 
 // Creating a fake exception
 $fakeException = new \Exception("A last exception", 1010, 
@@ -18,16 +18,22 @@ $fakeException = new \Exception("A last exception", 1010,
 echo new HtmlErrorRenderer($fakeException);
 
 // Rendering for CLI
-echo new TermErrorRenderer($fakeException);
+echo new ConsoleErrorRenderer($fakeException);
 
 // Rendering using option (all option enabled)
-echo new TermErrorRenderer($fakeException, TermErrorRenderer::OPT_ALL);
+echo new ConsoleErrorRenderer($fakeException, ConsoleErrorRenderer::OPT_ALL);
 
 // Rendering with all options but no colors
-echo new TermErrorRenderer($fakeException, TermErrorRenderer::OPT_ALL ^ TermErrorRenderer::OPT_COLORS);
+echo new ConsoleErrorRenderer($fakeException, ConsoleErrorRenderer::OPT_ALL ^ ConsoleErrorRenderer::OPT_COLORS);
 ```
 
+## Installation
+This library is available through [Packagist](https://packagist.org/packages/codeinc/lib-errordisplay) and can be installed using [Composer](https://getcomposer.org/): 
+
+```bash
+composer require codeinc/lib-errordisplay
+```
 
 # License
 
-The library is published under the MIT license (see [`LICENSE` file](https://github.com/codeinchq/lib-errordisplay/blob/master/LICENSE)). 
+The library is published under the MIT license (see [`LICENSE`](https://github.com/codeinchq/lib-errordisplay/blob/master/LICENSE) file). 
