@@ -36,4 +36,4 @@ composer require codeinc/lib-errordisplay
 
 # License
 
-The library is published under the MIT license (see [`LICENSE`](blob/master/LICENSE) file). 
+The library is published under the MIT license (see [`LICENSE`](LICENSE) file). 
