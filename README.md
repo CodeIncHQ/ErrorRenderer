@@ -34,6 +34,6 @@ This library is available through [Packagist](https://packagist.org/packages/cod
 composer require codeinc/error-renderer
 ```
 
-# License
+## License
 
 The library is published under the MIT license (see [`LICENSE`](LICENSE) file). 
