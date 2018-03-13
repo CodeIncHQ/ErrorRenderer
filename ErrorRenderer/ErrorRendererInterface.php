@@ -19,7 +19,7 @@
 // Time:     11:48
 // Project:  lib-errordisplay
 //
-namespace CodeInc\ErrorDisplay;
+namespace CodeInc\ErrorRenderer;
 use Throwable;
 
 

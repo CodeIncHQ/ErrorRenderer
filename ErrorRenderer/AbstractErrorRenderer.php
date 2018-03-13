@@ -16,41 +16,60 @@
 //
 // Author:   Joan Fabrégat <joan@codeinc.fr>
 // Date:     15/12/2017
-// Time:     13:12
+// Time:     13:07
 // Project:  lib-errordisplay
 //
-namespace CodeInc\ErrorDisplay;
+namespace CodeInc\ErrorRenderer;
 use Throwable;
 
 
 /**
- * Class RenderingEngineException
+ * Class AbstractErrorRenderer
  *
- * @package CodeInc\ErrorDisplay\RenderingEngines
+ * @package CodeInc\ErrorDisplay
  * @author Joan Fabrégat <joan@codeinc.fr>
  */
-class ErrorRendererException extends \Exception {
-	/**
-	 * @var ErrorRendererInterface
-	 */
-	private $renderer;
+abstract class AbstractErrorRenderer implements ErrorRendererInterface {
+	// Options
+	public const OPT_RENDER_LOCATION = 1;
+	public const OPT_RENDER_BACKTRACE = 2;
+	public const OPT_RENDER_PREVIOUS_EXCEPTIONS = 4;
+	public const OPT_ALL = self::OPT_RENDER_LOCATION | self::OPT_RENDER_BACKTRACE | self::OPT_RENDER_PREVIOUS_EXCEPTIONS;
+	public const OPT_DEFAULT = self::OPT_ALL;
 
 	/**
-	 * ErrorRendererException constructor.
-	 *
-	 * @param string $message
-	 * @param ErrorRendererInterface $renderer
-	 * @param null|Throwable $previous
+	 * @var Throwable
 	 */
-	public function __construct(string $message, ErrorRendererInterface $renderer, ?Throwable $previous = null) {
-		$this->renderer = $renderer;
-		parent::__construct($message, 0, $previous);
+	protected $throwable;
+
+	/**
+	 * @var int
+	 */
+	protected $options = [];
+
+	/**
+	 * AbstractRenderingEngine constructor.
+	 *
+	 * @param Throwable $throwable
+	 * @param int $options
+	 */
+	public function __construct(Throwable $throwable, int $options = null) {
+		$this->throwable = $throwable;
+		$this->options = $options !== null ? $options : self::OPT_DEFAULT;
 	}
 
 	/**
-	 * @return ErrorRendererInterface
+	 * Alias of get()
+	 *
+	 * @see AbstractErrorRenderer::get()
+	 * @return string
 	 */
-	public function getRenderer():ErrorRendererInterface {
-		return $this->renderer;
+	public function __toString():string {
+		try {
+			return $this->get();
+		}
+		catch (\Throwable $exception) {
+			return "Rendering error: ".$exception->getMessage();
+		}
 	}
 }

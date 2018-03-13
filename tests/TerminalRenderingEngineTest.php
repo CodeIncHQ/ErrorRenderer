@@ -20,7 +20,7 @@
 // Project:  lib-errordisplay
 //
 namespace Tests\CodeInc\ErrorDisplay;
-use CodeInc\ErrorDisplay\ConsoleErrorRenderer;
+use CodeInc\ErrorRenderer\ConsoleErrorRenderer;
 use PHPUnit\Framework\TestCase;
 
 
