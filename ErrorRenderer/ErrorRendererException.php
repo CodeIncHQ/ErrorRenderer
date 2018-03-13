@@ -16,60 +16,41 @@
 //
 // Author:   Joan Fabrégat <joan@codeinc.fr>
 // Date:     15/12/2017
-// Time:     13:07
+// Time:     13:12
 // Project:  lib-errordisplay
 //
-namespace CodeInc\ErrorDisplay;
+namespace CodeInc\ErrorRenderer;
 use Throwable;
 
 
 /**
- * Class AbstractErrorRenderer
+ * Class RenderingEngineException
  *
- * @package CodeInc\ErrorDisplay
+ * @package CodeInc\ErrorDisplay\RenderingEngines
  * @author Joan Fabrégat <joan@codeinc.fr>
  */
-abstract class AbstractErrorRenderer implements ErrorRendererInterface {
-	// Options
-	public const OPT_RENDER_LOCATION = 1;
-	public const OPT_RENDER_BACKTRACE = 2;
-	public const OPT_RENDER_PREVIOUS_EXCEPTIONS = 4;
-	public const OPT_ALL = self::OPT_RENDER_LOCATION | self::OPT_RENDER_BACKTRACE | self::OPT_RENDER_PREVIOUS_EXCEPTIONS;
-	public const OPT_DEFAULT = self::OPT_ALL;
-
+class ErrorRendererException extends \Exception {
 	/**
-	 * @var Throwable
+	 * @var ErrorRendererInterface
 	 */
-	protected $throwable;
+	private $renderer;
 
 	/**
-	 * @var int
-	 */
-	protected $options = [];
-
-	/**
-	 * AbstractRenderingEngine constructor.
+	 * ErrorRendererException constructor.
 	 *
-	 * @param Throwable $throwable
-	 * @param int $options
+	 * @param string $message
+	 * @param ErrorRendererInterface $renderer
+	 * @param null|Throwable $previous
 	 */
-	public function __construct(Throwable $throwable, int $options = null) {
-		$this->throwable = $throwable;
-		$this->options = $options !== null ? $options : self::OPT_DEFAULT;
+	public function __construct(string $message, ErrorRendererInterface $renderer, ?Throwable $previous = null) {
+		$this->renderer = $renderer;
+		parent::__construct($message, 0, $previous);
 	}
 
 	/**
-	 * Alias of get()
-	 *
-	 * @see AbstractErrorRenderer::get()
-	 * @return string
+	 * @return ErrorRendererInterface
 	 */
-	public function __toString():string {
-		try {
-			return $this->get();
-		}
-		catch (\Throwable $exception) {
-			return "Rendering error: ".$exception->getMessage();
-		}
+	public function getRenderer():ErrorRendererInterface {
+		return $this->renderer;
 	}
 }

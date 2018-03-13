@@ -6,8 +6,8 @@ The PHP 7 library provides to classes dedicated to render exceptions and errors 
 
 ```php
 <?php
-use CodeInc\ErrorDisplay\HtmlErrorRenderer;
-use CodeInc\ErrorDisplay\ConsoleErrorRenderer;
+use CodeInc\ErrorRenderer\HtmlErrorRenderer;
+use CodeInc\ErrorRenderer\ConsoleErrorRenderer;
 
 // Creating a fake exception
 $fakeException = new \Exception("A last exception", 1010, 
@@ -28,10 +28,10 @@ echo new ConsoleErrorRenderer($fakeException, ConsoleErrorRenderer::OPT_ALL ^ Co
 ```
 
 ## Installation
-This library is available through [Packagist](https://packagist.org/packages/codeinc/lib-errordisplay) and can be installed using [Composer](https://getcomposer.org/): 
+This library is available through [Packagist](https://packagist.org/packages/codeinc/error-renderer) and can be installed using [Composer](https://getcomposer.org/): 
 
 ```bash
-composer require codeinc/lib-errordisplay
+composer require codeinc/error-renderer
 ```
 
 # License

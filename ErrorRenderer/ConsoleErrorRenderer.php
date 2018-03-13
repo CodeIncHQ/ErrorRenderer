@@ -19,7 +19,7 @@
 // Time:     11:44
 // Project:  lib-errordisplay
 //
-namespace CodeInc\ErrorDisplay;
+namespace CodeInc\ErrorRenderer;
 use Colors\Color;
 use Throwable;
 
