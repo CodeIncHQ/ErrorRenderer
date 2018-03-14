@@ -1,4 +1,4 @@
-# Code Inc. library to render errors in HTML and CLI
+# PHP library to render errors in HTML and CLI
 
 The PHP 7 library provides to classes dedicated to render exceptions and errors (everything which implements [`Throwable`](http://php.net/manual/fr/class.throwable.php)).
 
