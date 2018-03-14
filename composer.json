@@ -1,6 +1,6 @@
 {
   "name": "codeinc/error-renderer",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Code Inc.'s error display library",
   "homepage": "https://github.com/CodeIncHQ/ErrorRenderer",
   "type": "library",
@@ -14,7 +14,7 @@
   },
   "autoload": {
     "psr-4": {
-      "CodeInc\\ErrorDisplay\\": "src"
+      "CodeInc\\ErrorRenderer\\": "src"
     }
   },
   "authors": [
