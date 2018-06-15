@@ -77,6 +77,8 @@ div.exception-report div.exception > div.exception-trace strong:before {
 	transition: transform 300ms ease;
 	font-size: 10px;
 	margin-right: 7px;
+	position: relative;
+	bottom: 1px;
 }
 div.exception-report div.exception > div.exception-trace.closed strong:before {
 	transform: rotate(0);
