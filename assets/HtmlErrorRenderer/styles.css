@@ -2,7 +2,7 @@
  * +---------------------------------------------------------------------+
  * | CODE INC. SOURCE CODE                                               |
  * +---------------------------------------------------------------------+
- * | Copyright (c) 2017 - Code Inc. SAS - All Rights Reserved.           |
+ * | Copyright (c) 2017 - 2018 - Code Inc. SAS - All Rights Reserved.    |
  * | Visit https://www.codeinc.fr for more information about licensing.  |
  * +---------------------------------------------------------------------+
  * | NOTICE:  All information contained herein is, and remains the       |
@@ -16,7 +16,7 @@
  * Author:   Joan Fabrégat <joan@codeinc.fr>
  * Date:     19/02/2018
  * Time:     14:14
- * Project:  lib-errordisplay
+ * Project:  ErrorRenderer
  */
 
 div.exception-report {
@@ -67,13 +67,30 @@ div.exception-report .exception-location {
 	opacity: .7;
 	/*font-style: italic;*/
 }
-div.exception-report div.exception > ol.exception-trace {
+div.exception-report div.exception > div.exception-trace strong {
+	cursor: pointer;
+}
+div.exception-report div.exception > div.exception-trace strong:before {
+	content: '▶';
+	display: inline-block;
+	transform: rotate(90deg);
+	transition: transform 300ms ease;
+	font-size: 10px;
+	margin-right: 7px;
+}
+div.exception-report div.exception > div.exception-trace.closed strong:before {
+	transform: rotate(0);
+}
+div.exception-report div.exception > div.exception-trace {
 	margin-top: 20px;
 }
-div.exception-report div.exception > ol.exception-trace li:not(:last-of-type) {
+div.exception-report div.exception > div.exception-trace.closed ol {
+	display: none;
+}
+div.exception-report div.exception > div.exception-trace ol li:not(:last-of-type) {
 	margin-bottom: 10px;
 }
-div.exception-report div.exception > ol.exception-trace li span.exception-trace-arg {
+div.exception-report div.exception > div.exception-trace ol li span.exception-trace-arg {
 	display: inline-block;
 	margin: 2px 0 2px 20px;
 }

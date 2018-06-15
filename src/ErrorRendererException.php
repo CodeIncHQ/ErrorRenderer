@@ -17,7 +17,7 @@
 // Author:   Joan Fabrégat <joan@codeinc.fr>
 // Date:     15/12/2017
 // Time:     13:12
-// Project:  lib-errordisplay
+// Project:  ErrorRenderer
 //
 namespace CodeInc\ErrorRenderer;
 use Throwable;
