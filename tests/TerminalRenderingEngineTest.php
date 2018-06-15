@@ -17,7 +17,7 @@
 // Author:   Joan Fabrégat <joan@codeinc.fr>
 // Date:     19/02/2018
 // Time:     14:32
-// Project:  lib-errordisplay
+// Project:  ErrorRenderer
 //
 namespace Tests\CodeInc\ErrorDisplay;
 use CodeInc\ErrorRenderer\ConsoleErrorRenderer;
