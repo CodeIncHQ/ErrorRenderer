@@ -197,7 +197,7 @@ class HtmlErrorRenderer extends AbstractErrorRenderer
                          __DIR__.'/../assets/HtmlErrorRenderer/styles.css'] as $file) {
                 if (file_exists($file)) {
                     echo '<style>';
-                    readfile(__DIR__.'/../assets/HtmlErrorRenderer/styles.css');
+                    readfile($file);
                     echo '</style>';
                     break;
                 }
