@@ -107,12 +107,16 @@ class HtmlErrorRenderer extends AbstractErrorRenderer
      * Renders and exception.
      *
      * @param \Throwable $exception
+     * @throws \ReflectionException
      */
     private function renderException(\Throwable $exception):void
     {
+        $reflectionClass = new ReflectionClass($exception);
         ?>
-        <div class="exception" data-type="<?=htmlspecialchars($exceptionClass)?>">
-            <span class="exception-class">[<?=htmlspecialchars($exceptionClass)?>]</span>
+        <div class="exception" data-type="<?=htmlspecialchars($reflectionClass->getName())?>">
+            <span class="exception-class" title="<?=htmlspecialchars($reflectionClass->getName())?>">
+                [<?=htmlspecialchars($reflectionClass->getShortName())?>]
+            </span>
             <span class="exception-message">
 				<?=htmlspecialchars($exception->getMessage())?>
 			</span><br>
