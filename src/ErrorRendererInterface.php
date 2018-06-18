@@ -29,7 +29,8 @@ use Throwable;
  * @package CodeInc\ErrorDisplay
  * @author Joan Fabrégat <joan@codeinc.fr>
  */
-interface ErrorRendererInterface {
+interface ErrorRendererInterface
+{
 	/**
 	 * ExceptionRendererInterface constructor.
 	 *

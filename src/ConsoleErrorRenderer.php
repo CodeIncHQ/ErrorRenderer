@@ -30,7 +30,8 @@ use Throwable;
  * @package CodeInc\ErrorDisplay
  * @author Joan Fabrégat <joan@codeinc.fr>
  */
-class ConsoleErrorRenderer extends AbstractErrorRenderer {
+class ConsoleErrorRenderer extends AbstractErrorRenderer
+{
 	// Options
 	public const OPT_COLORS = 1024;
 	public const OPT_ALL = parent::OPT_ALL | self::OPT_COLORS;
@@ -59,7 +60,8 @@ class ConsoleErrorRenderer extends AbstractErrorRenderer {
 	 * @param Throwable $throwable
 	 * @param int|null $options
 	 */
-	public function __construct(Throwable $throwable, int $options = null) {
+	public function __construct(Throwable $throwable, int $options = null)
+    {
 		parent::__construct($throwable, $options !== null ? $options : self::OPT_DEFAULT);
 		if (class_exists(Color::class)) {
 			$this->termColor = new Color();
@@ -72,7 +74,8 @@ class ConsoleErrorRenderer extends AbstractErrorRenderer {
 	 * @param int $count Number of lines to be returned
 	 * @return string
 	 */
-	private function getBlankLine(int $count = null):string {
+	private function getBlankLine(int $count = null):string
+    {
 		$out = "";
 		for ($i = 0; $i < ($count ?: 1); $i++) {
 			$out .= $this->getLine('');
@@ -85,7 +88,8 @@ class ConsoleErrorRenderer extends AbstractErrorRenderer {
 	 *
 	 * @return int
 	 */
-	private function countTermCols():int {
+	private function countTermCols():int
+    {
 		if (!$this->termCols) {
 			if (!($this->termCols = (int)exec('tput cols'))) {
 				$this->termCols = 80;
@@ -97,7 +101,8 @@ class ConsoleErrorRenderer extends AbstractErrorRenderer {
 	/**
 	 * Renders the exception.
 	 */
-	public function get():string {
+	public function get():string
+    {
 		// renders the error
 		$out = "\n"
 			.$this->getBlankLine()
@@ -135,7 +140,8 @@ class ConsoleErrorRenderer extends AbstractErrorRenderer {
 	 * @param int|null $linePadding
 	 * @return string
 	 */
-	private function getErrorBlock(\Throwable $exception, ?int $linePadding = null):string {
+	private function getErrorBlock(\Throwable $exception, ?int $linePadding = null):string
+    {
 		// Renders the message
 		$out = $this->getLine(get_class($exception), self::STYLE_BOLD | self::STYLE_ITALIC, $linePadding)
 			.$this->getLine($exception->getMessage(), null, $linePadding);
@@ -167,7 +173,8 @@ class ConsoleErrorRenderer extends AbstractErrorRenderer {
 	 * @param int|null $paddingLength
 	 * @return string
 	 */
-	private function getLine(string $content, int $styles = null, int $paddingLength = null):string {
+	private function getLine(string $content, int $styles = null, int $paddingLength = null):string
+    {
 		$termCols = $this->countTermCols();
 
 		// title lines

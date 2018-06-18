@@ -29,7 +29,8 @@ use Throwable;
  * @package CodeInc\ErrorDisplay
  * @author Joan Fabrégat <joan@codeinc.fr>
  */
-abstract class AbstractErrorRenderer implements ErrorRendererInterface {
+abstract class AbstractErrorRenderer implements ErrorRendererInterface
+{
 	// Options
 	public const OPT_RENDER_LOCATION = 1;
 	public const OPT_RENDER_BACKTRACE = 2;
@@ -53,7 +54,8 @@ abstract class AbstractErrorRenderer implements ErrorRendererInterface {
 	 * @param Throwable $throwable
 	 * @param int $options
 	 */
-	public function __construct(Throwable $throwable, int $options = null) {
+	public function __construct(Throwable $throwable, int $options = null)
+    {
 		$this->throwable = $throwable;
 		$this->options = $options !== null ? $options : self::OPT_DEFAULT;
 	}
@@ -64,7 +66,8 @@ abstract class AbstractErrorRenderer implements ErrorRendererInterface {
 	 * @see AbstractErrorRenderer::get()
 	 * @return string
 	 */
-	public function __toString():string {
+	public function __toString():string
+    {
 		try {
 			return $this->get();
 		}

@@ -20,6 +20,7 @@
 // Project:  ErrorRenderer
 //
 namespace CodeInc\ErrorRenderer;
+use ReflectionClass;
 use Throwable;
 
 
@@ -29,7 +30,8 @@ use Throwable;
  * @package CodeInc\ErrorDisplay
  * @author Joan Fabrégat <joan@codeinc.fr>
  */
-class HtmlErrorRenderer extends AbstractErrorRenderer {
+class HtmlErrorRenderer extends AbstractErrorRenderer
+{
     // Options
     public const OPT_RENDER_FUNC_ARGS = 1024;
     public const OPT_RENDER_CSS = 2048;
@@ -42,7 +44,8 @@ class HtmlErrorRenderer extends AbstractErrorRenderer {
      * @param Throwable $throwable
      * @param int|null $options
      */
-    public function __construct(Throwable $throwable, int $options = null) {
+    public function __construct(Throwable $throwable, int $options = null)
+    {
         parent::__construct($throwable, $options !== null ? $options : self::OPT_DEFAULT);
     }
 
@@ -50,8 +53,10 @@ class HtmlErrorRenderer extends AbstractErrorRenderer {
      * Returns the HTML code.
      *
      * @return string
+     * @throws \ReflectionException
      */
-    public function get():string {
+    public function get():string
+    {
         ob_start();
         ?>
         <!-- --------------------------------- EXCEPTION --------------------------------- -->
@@ -88,7 +93,8 @@ class HtmlErrorRenderer extends AbstractErrorRenderer {
      * @param string $title
      * @param int|null $sideSize
      */
-    private function renderTitle(string $title, int $sideSize = null):void {
+    private function renderTitle(string $title, int $sideSize = null):void
+    {
         $titleSide = $sideSize ? str_pad("", $sideSize, "-") : null;
         echo '<div class="exception-title">'
             .($titleSide ? "$titleSide " : "")
@@ -102,8 +108,8 @@ class HtmlErrorRenderer extends AbstractErrorRenderer {
      *
      * @param \Throwable $exception
      */
-    private function renderException(\Throwable $exception):void {
-        $exceptionClass = get_class($exception);
+    private function renderException(\Throwable $exception):void
+    {
         ?>
         <div class="exception" data-type="<?=htmlspecialchars($exceptionClass)?>">
             <span class="exception-class">[<?=htmlspecialchars($exceptionClass)?>]</span>
@@ -123,11 +129,12 @@ class HtmlErrorRenderer extends AbstractErrorRenderer {
      *
      * @param \Throwable $exception
      */
-    private function renderExceptionTrace(\Throwable $exception):void {
+    private function renderExceptionTrace(\Throwable $exception):void
+    {
         if ($this->options & self::OPT_RENDER_BACKTRACE) {
             ?>
-            <div class="exception-trace closed">
-                <strong onclick="this.parentNode.classList.toggle('closed');">Backtrace</strong>
+            <div class="exception-trace closed" onclick="this.classList.toggle('closed');">
+                <strong>Backtrace</strong>
                 <ol>
                     <? foreach ($exception->getTrace() as $item) {
                         echo "<li>";
@@ -179,7 +186,8 @@ class HtmlErrorRenderer extends AbstractErrorRenderer {
     /**
      * Renders the CSS styles.
      */
-    private function renderStyles():void {
+    private function renderStyles():void
+    {
         if ($this->options & self::OPT_RENDER_CSS) {
             foreach ([__DIR__.'/../assets/HtmlErrorRenderer/styles.min.css',
                          __DIR__.'/../assets/HtmlErrorRenderer/styles.css'] as $file) {
