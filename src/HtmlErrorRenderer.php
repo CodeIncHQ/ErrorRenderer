@@ -181,9 +181,15 @@ class HtmlErrorRenderer extends AbstractErrorRenderer {
      */
     private function renderStyles():void {
         if ($this->options & self::OPT_RENDER_CSS) {
-            echo '<style>';
-            readfile(__DIR__.'/../assets/HtmlErrorRenderer/styles.css');
-            echo '</style>';
+            foreach ([__DIR__.'/../assets/HtmlErrorRenderer/styles.min.css',
+                         __DIR__.'/../assets/HtmlErrorRenderer/styles.css'] as $file) {
+                if (file_exists($file)) {
+                    echo '<style>';
+                    readfile(__DIR__.'/../assets/HtmlErrorRenderer/styles.css');
+                    echo '</style>';
+                    break;
+                }
+            }
         }
     }
 }
