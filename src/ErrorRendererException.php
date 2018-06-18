@@ -29,7 +29,8 @@ use Throwable;
  * @package CodeInc\ErrorDisplay\RenderingEngines
  * @author Joan Fabrégat <joan@codeinc.fr>
  */
-class ErrorRendererException extends \Exception {
+class ErrorRendererException extends \Exception
+{
 	/**
 	 * @var ErrorRendererInterface
 	 */
@@ -42,7 +43,8 @@ class ErrorRendererException extends \Exception {
 	 * @param ErrorRendererInterface $renderer
 	 * @param null|Throwable $previous
 	 */
-	public function __construct(string $message, ErrorRendererInterface $renderer, ?Throwable $previous = null) {
+	public function __construct(string $message, ErrorRendererInterface $renderer, ?Throwable $previous = null)
+    {
 		$this->renderer = $renderer;
 		parent::__construct($message, 0, $previous);
 	}
@@ -50,7 +52,8 @@ class ErrorRendererException extends \Exception {
 	/**
 	 * @return ErrorRendererInterface
 	 */
-	public function getRenderer():ErrorRendererInterface {
+	public function getRenderer():ErrorRendererInterface
+    {
 		return $this->renderer;
 	}
 }
