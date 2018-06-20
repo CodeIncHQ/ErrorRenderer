@@ -10,7 +10,7 @@
 // | property of Code Inc. SAS. The intellectual and technical concepts  |
 // | contained herein are proprietary to Code Inc. SAS are protected by  |
 // | trade secret or copyright law. Dissemination of this information or |
-// | reproduction of this material  is strictly forbidden unless prior   |
+// | reproduction of this material is strictly forbidden unless prior    |
 // | written permission is obtained from Code Inc. SAS.                  |
 // +---------------------------------------------------------------------+
 //
@@ -20,6 +20,8 @@
 // Project:  ErrorRenderer
 //
 namespace CodeInc\ErrorRenderer;
+use MatthiasMullie\Minify\CSS;
+use MatthiasMullie\Minify\JS;
 use ReflectionClass;
 use Throwable;
 
@@ -79,8 +81,12 @@ class HtmlErrorRenderer extends AbstractErrorRenderer
             $this->renderTitle("End error", 4);
 
             // Renders the CSS
-            $this->renderStyles();
+            if ($this->options & self::OPT_RENDER_CSS) {
+                echo '<style>'.(new CSS(__DIR__.'/../assets/HtmlErrorRenderer/styles.css'))->minify().'</style>';
+                echo '<script>'.(new JS(__DIR__.'/../assets/HtmlErrorRenderer/script.js'))->minify().'</script>';
+            }
             ?>
+
         </div>
         <!-- --------------------------------- END EXCEPTION --------------------------------- -->
         <?
@@ -137,7 +143,7 @@ class HtmlErrorRenderer extends AbstractErrorRenderer
     {
         if ($this->options & self::OPT_RENDER_BACKTRACE) {
             ?>
-            <div class="exception-trace closed" onclick="this.classList.toggle('closed');">
+            <div class="exception-trace" onclick="this.classList.toggle('closed');">
                 <strong>Backtrace</strong>
                 <ol>
                     <? foreach ($exception->getTrace() as $item) {
@@ -184,24 +190,6 @@ class HtmlErrorRenderer extends AbstractErrorRenderer
                 </ol>
             </div>
             <?
-        }
-    }
-
-    /**
-     * Renders the CSS styles.
-     */
-    private function renderStyles():void
-    {
-        if ($this->options & self::OPT_RENDER_CSS) {
-            foreach ([__DIR__.'/../assets/HtmlErrorRenderer/styles.min.css',
-                         __DIR__.'/../assets/HtmlErrorRenderer/styles.css'] as $file) {
-                if (file_exists($file)) {
-                    echo '<style>';
-                    readfile($file);
-                    echo '</style>';
-                    break;
-                }
-            }
         }
     }
 }
