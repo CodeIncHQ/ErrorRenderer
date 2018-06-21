@@ -82,8 +82,12 @@ class HtmlErrorRenderer extends AbstractErrorRenderer
 
             // Renders the CSS
             if ($this->options & self::OPT_RENDER_CSS) {
-                echo '<style>'.(new CSS(__DIR__.'/../assets/HtmlErrorRenderer/styles.css'))->minify().'</style>';
-                echo '<script>'.(new JS(__DIR__.'/../assets/HtmlErrorRenderer/script.js'))->minify().'</script>';
+                echo '<style>'
+                    .(new CSS(__DIR__.'/../assets/HtmlErrorRenderer/styles.css'))->minify()
+                    .'</style>';
+                echo '<noscript><style>'
+                    .(new CSS(__DIR__.'/../assets/HtmlErrorRenderer/noscript-styles.css'))->minify()
+                    .'</style></noscript>';
             }
             ?>
 
@@ -143,8 +147,8 @@ class HtmlErrorRenderer extends AbstractErrorRenderer
     {
         if ($this->options & self::OPT_RENDER_BACKTRACE) {
             ?>
-            <div class="exception-trace" onclick="this.classList.toggle('closed');">
-                <strong>Backtrace</strong>
+            <div class="exception-trace closed">
+                <strong onclick="this.parentNode.classList.toggle('closed');">Backtrace</strong>
                 <ol>
                     <? foreach ($exception->getTrace() as $item) {
                         echo "<li>";

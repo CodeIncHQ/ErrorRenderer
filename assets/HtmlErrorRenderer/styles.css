@@ -48,7 +48,6 @@ div.exception-report div.exception-title:last-of-type {
 	margin-bottom: 0;
 }
 div.exception-report div.exception {
-	border: 1px solid #97040C;
 	padding: 10px;
 	margin: 10px 0;
 	transition: all 300ms ease;
@@ -75,8 +74,22 @@ div.exception-report .exception-location {
 div.exception-report div.exception > div.exception-trace {
 	transition: all 300ms ease;
 	margin: 5px -10px -10px;
-	cursor: pointer;
 	padding: 5px 10px;
+}
+div.exception-report div.exception > div.exception-trace strong {
+	cursor: pointer;
+}
+div.exception-report div.exception > div.exception-trace strong:before {
+	content: '▶';
+	display: inline-block;
+	transition: all 300ms ease;
+	font-size: 10px;
+	margin-right: 7px;
+	position: relative;
+	bottom: 1px;
+}
+div.exception-report div.exception > div.exception-trace:not(.closed) strong:before {
+	transform: rotate(90deg);
 }
 div.exception-report div.exception > div.exception-trace.closed:hover,
 div.exception-report div.exception > div.exception-trace:not(.closed) {
@@ -86,24 +99,17 @@ div.exception-report div.exception > div.exception-trace:not(.closed) {
 	padding: 8px 10px;
 	margin: 10px -10px -10px;
 }
-div.exception-report div.exception > div.exception-trace strong:before {
-	content: '▶';
-	display: inline-block;
-	transition: all 300ms ease;
-	font-size: 10px;
-	margin-right: 7px;
-}
-div.exception-report div.exception > div.exception-trace:not(.closed) strong:before {
-	transform: rotate(90deg);
-	position: relative;
-	bottom: 1px;
-	/*margin-right: 10px;*/
-}
 div.exception-report div.exception > div.exception-trace.closed ol {
 	display: none;
 }
+div.exception-report div.exception > div.exception-trace ol li {
+	padding: 5px;
+}
+div.exception-report div.exception > div.exception-trace ol li:hover {
+	background-color: rgba(255, 255, 255, .1);
+}
 div.exception-report div.exception > div.exception-trace ol li:not(:last-of-type) {
-	margin-bottom: 10px;
+	border-bottom: 1px solid rgba(255, 255, 255, .1);
 }
 div.exception-report div.exception > div.exception-trace ol li span.exception-trace-arg {
 	display: inline-block;
