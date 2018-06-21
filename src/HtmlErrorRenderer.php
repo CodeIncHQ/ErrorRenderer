@@ -143,8 +143,8 @@ class HtmlErrorRenderer extends AbstractErrorRenderer
     {
         if ($this->options & self::OPT_RENDER_BACKTRACE) {
             ?>
-            <div class="exception-trace" onclick="this.classList.toggle('closed');">
-                <strong>Backtrace</strong>
+            <div class="exception-trace closed">
+                <strong onclick="this.parentNode.classList.toggle('closed');">Backtrace</strong>
                 <ol>
                     <? foreach ($exception->getTrace() as $item) {
                         echo "<li>";
