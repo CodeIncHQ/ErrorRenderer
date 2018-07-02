@@ -19,3 +19,6 @@
 div.exception-report div.exception > div.exception-trace.closed ol {
     display: block!important;
 }
+div.exception-report div.exception > div.exception-trace strong {
+    cursor: default!important;
+}
