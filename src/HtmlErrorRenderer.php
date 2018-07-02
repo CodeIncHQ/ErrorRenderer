@@ -21,7 +21,6 @@
 //
 namespace CodeInc\ErrorRenderer;
 use MatthiasMullie\Minify\CSS;
-use MatthiasMullie\Minify\JS;
 use ReflectionClass;
 use Throwable;
 
@@ -145,7 +144,7 @@ class HtmlErrorRenderer extends AbstractErrorRenderer
      */
     private function renderExceptionTrace(\Throwable $exception):void
     {
-        if ($this->options & self::OPT_RENDER_BACKTRACE) {
+        if ($this->options & self::OPT_RENDER_BACKTRACE && $exception->getTrace()) {
             ?>
             <div class="exception-trace closed">
                 <strong onclick="this.parentNode.classList.toggle('closed');">Backtrace</strong>
