@@ -148,7 +148,7 @@ class HtmlErrorRenderer extends AbstractErrorRenderer
             ?>
             <div class="exception-trace closed">
                 <strong onclick="this.parentNode.classList.toggle('closed');">Backtrace</strong>
-                <ol>
+                <ol reversed>
                     <? foreach ($exception->getTrace() as $item) {
                         echo "<li>";
                         if (isset($item["function"]) && $item["function"]) {
